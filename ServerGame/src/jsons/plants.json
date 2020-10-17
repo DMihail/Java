@@ -1,0 +1,32 @@
+{
+"tomato": {
+  "name": "Томат",
+  "harvestCost": "",
+  "seedCost": "",
+  "speedMaturation": ""
+},
+  "watermelon": {
+    "name": "Арбуз",
+    "harvestCost": "",
+    "seedCost": "",
+    "speedMaturation": ""
+  },
+  "rose": {
+    "name": "Роза",
+    "harvestCost": "",
+    "seedCost": "",
+    "speedMaturation": ""
+  },
+  "banana": {
+    "name": "Банан",
+    "harvestCost": "",
+    "seedCost": "",
+    "speedMaturation": ""
+  },
+  "coco": {
+    "name": "Кокос",
+    "harvestCost": "",
+    "seedCost": "",
+    "speedMaturation": ""
+  }
+}
