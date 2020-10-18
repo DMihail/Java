@@ -2,7 +2,7 @@ package com.company;
 
 public class Gamer {
 
-    private int money;
+    private int money = 1000;
 
     public boolean buySeeds(float sum) {
         if (money >= sum) {

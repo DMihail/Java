@@ -1,8 +1,6 @@
 package com.company;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.IntStream;
+import java.util.*;
+
 public class Plant {
 
     private String name;
