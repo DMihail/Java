@@ -1,4 +1,3 @@
-package com.company;
 import java.util.*;
 
 public class Plant {
@@ -7,8 +6,9 @@ public class Plant {
     private int harvestCost;
     private int seedCost;
     private int speedMaturation;
+    private String status;
 
-    public void setPlantData(String name, int harvestCost, int seedCost, int speedMaturation) {
+    public Plant(String name, int harvestCost, int seedCost, int speedMaturation) {
         this.name = name;
         this.harvestCost = harvestCost;
         this.seedCost = seedCost;

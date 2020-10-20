@@ -1,15 +1,12 @@
-package com.company;
-
-
 public class Grid {
 
-private int [] grid = {0, 0,
-                       0, 0,
-                       0, 0,
-                       0, 0 };
+private String [] grid = { " ", " ",
+                           " ", " ",
+                           " ", " ",
+                           " ", " ", };
 
 
-    public void setPlantOfTheGrid(int numPart, int plantIndex) {
+    public void setPlantOfTheGrid(int numPart, String plantIndex) {
         grid[numPart] = plantIndex;
     }
 
@@ -44,10 +41,10 @@ private int [] grid = {0, 0,
             }
             else if (part == -4) {
                 System.out.print(" |");
-            }else {
-                if (part == 0) System.out.print("  " + i + "  ");
-                if (part == 1) System.out.print("  X  ");
-                if (part == 4) System.out.print("  O  ");
             }
+    }
+
+    private void printPartGrid(String part, int i ) {
+                System.out.print("  " + part + "  ");
     }
 }

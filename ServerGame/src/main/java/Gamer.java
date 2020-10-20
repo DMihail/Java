@@ -1,5 +1,3 @@
-package com.company;
-
 public class Gamer {
 
     private int money = 1000;
