@@ -1,32 +1,32 @@
 {
 "tomato": {
   "name": "Томат",
-  "harvestCost": "100",
-  "seedCost": "25",
-  "speedMaturation": "1500"
+  "harvestCost": 100,
+  "seedCost": 25,
+  "speedMaturation": 1500
 },
   "watermelon": {
     "name": "Арбуз",
-    "harvestCost": "250",
-    "seedCost": "50",
-    "speedMaturation": "1000"
+    "harvestCost": 250,
+    "seedCost": 50,
+    "speedMaturation": 1000
   },
   "rose": {
     "name": "Роза",
-    "harvestCost": "1000",
-    "seedCost": "100",
-    "speedMaturation": "3000"
+    "harvestCost": 1000,
+    "seedCost": 100,
+    "speedMaturation": 3000
   },
   "banana": {
     "name": "Банан",
-    "harvestCost": "170",
-    "seedCost": "23",
-    "speedMaturation": "1000"
+    "harvestCost": 170,
+    "seedCost": 23,
+    "speedMaturation": 1000
   },
   "coco": {
     "name": "Кокос",
-    "harvestCost": "750",
-    "seedCost": "75",
-    "speedMaturation": "500"
+    "harvestCost": 750,
+    "seedCost": 75,
+    "speedMaturation": 500
   }
 }

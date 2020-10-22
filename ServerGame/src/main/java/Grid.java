@@ -10,7 +10,12 @@ private String [] grid = { " ", " ",
         grid[numPart] = plantIndex;
     }
 
-
+    public boolean isPartGridEmpty(int index) {
+        if (grid[index] == " ") {
+            return true;
+        }
+        return false;
+    }
 
     public void printGrid() {
         printPartGrid(-3, 0);

@@ -7,6 +7,7 @@ public class Game {
     private Gamer gamer = new Gamer();
     private Map<String,Plant> plants = new HashMap<String,Plant>();
     private Scanner scan = new Scanner(System.in);
+    private  Grid grid = new Grid();
 
     public Game() {
         plants.put("Томат", new Plant("Томат", 100, 25, 1500));
@@ -27,11 +28,15 @@ public class Game {
     private void PrintGameMain() {
         System.out.println(
                 "1. Посадить растение \n" +
-                "2. Собрать урожай \n"
+                "2. Собрать урожай \n"+
+                "3. Показать карту \n"+
+                "4. Показать баланс \n"+
+                "5. Показать правила \n"+
+                "6. Выйти \n"
         );
     }
 
-    private void PrintPlantList() {
+    public void PrintPlantList() {
         System.out.println("Выбирите растение! ");
         int i = 0;
         for (String plant: plants.keySet()) {
@@ -41,6 +46,7 @@ public class Game {
     }
 
     private void choseItemMainGame() {
+        System.out.println("Введите номер пункта из списка");
         switch (scan.nextInt()) {
             case 1:
                 PrintPlantList();
@@ -48,25 +54,63 @@ public class Game {
                 break;
             case 2:
                 break;
+            case 3:
+                grid.printGrid();
+                break;
+            case 4:
+                break;
+            case 5:
+                printRule();
+                break;
+            case 6:
+                Exit();
+                break;
             default:
-                System.out.println("Введите номер пункта из списка");
+                System.out.println("Неверное значение");
                 PrintGameMain();
                 break;
         }
+
     }
 
+    private void aging(String name) {
+        Plant plant = plants.get(name);
+        System.out.println("Введите номер ячейки для  посадки растения ");
+        int index = scan.nextInt();
+        boolean is = grid.isPartGridEmpty(index);
+        if (is) {
+            if (!plant.plantHerb(index)) {
+                PrintGameMain();
+//                grid.printGrid();
+            }
+        }
+        else {
+            System.out.println("Данная ячейка занята введите номер пустой ячейки ");
+            aging(name);
+        }
+    }
+
+
     private void choseItemMainPlant() {
-//        switch (scan.nextInt()) {
-//            case 1:
-//                break;
-//
-//        }
+        switch (scan.nextInt()) {
+            case 1:
+                aging("Томат");
+                break;
+            default:
+                PrintGameMain();
+                choseItemMainGame();
+                break;
+        }
     }
 
 
     public void Game() {
         PrintGameMain();
         choseItemMainGame();
+    }
+
+    private void Exit() {
+        grid.printGrid();
     }
 
 }
