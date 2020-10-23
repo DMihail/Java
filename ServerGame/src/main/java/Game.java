@@ -81,7 +81,6 @@ public class Game {
         if (is) {
             if (!plant.plantHerb(index)) {
                 PrintGameMain();
-//                grid.printGrid();
             }
         }
         else {
@@ -105,8 +104,10 @@ public class Game {
 
 
     public void Game() {
-        PrintGameMain();
-        choseItemMainGame();
+        for (;;) {
+            PrintGameMain();
+            choseItemMainGame();
+        }
     }
 
     private void Exit() {
