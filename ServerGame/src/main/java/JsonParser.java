@@ -29,7 +29,6 @@ public class JsonParser {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(readJson());
         for (JsonNode obj: jsonNode) {
-            System.out.println(obj.get("name"));
             String name = obj.get("name").asText();
             plants.put(name, obj);
         }

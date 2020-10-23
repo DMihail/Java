@@ -1,18 +1,19 @@
-import java.util.ArrayList;
+
+import com.fasterxml.jackson.databind.JsonNode;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
     private Gamer gamer = new Gamer();
-    private Map<String,Plant> plants = new HashMap<String,Plant>();
+    private Map<String, JsonNode> plants = new HashMap<>();
     private Scanner scan = new Scanner(System.in);
+    private  Map<Integer,Plant> gridMap = new HashMap<Integer,Plant>();
     private  Grid grid = new Grid();
 
     public Game() {
-        plants.put("Томат", new Plant("Томат", 100, 25, 1500));
-        plants.put("Арбуз", new Plant("Арбуз", 250, 50, 1000));
-        plants.put("Роза", new Plant("Роза", 1000, 100, 3000));
+        JsonParser json = new JsonParser();
+        plants = json.getMapPlantsObj();
     }
 
     public void printRule() {
@@ -39,9 +40,9 @@ public class Game {
     public void PrintPlantList() {
         System.out.println("Выбирите растение! ");
         int i = 0;
-        for (String plant: plants.keySet()) {
+        for (String name: plants.keySet()){
             i++;
-            System.out.println(i + ". " +plant);
+            System.out.println(i + ". " + name);
         }
     }
 
@@ -74,19 +75,19 @@ public class Game {
     }
 
     private void aging(String name) {
-        Plant plant = plants.get(name);
-        System.out.println("Введите номер ячейки для  посадки растения ");
-        int index = scan.nextInt();
-        boolean is = grid.isPartGridEmpty(index);
-        if (is) {
-            if (!plant.plantHerb(index)) {
-                PrintGameMain();
-            }
-        }
-        else {
-            System.out.println("Данная ячейка занята введите номер пустой ячейки ");
-            aging(name);
-        }
+//        Plant plant = plants.get(name);
+//        System.out.println("Введите номер ячейки для  посадки растения ");
+//        int index = scan.nextInt();
+//        boolean is = grid.isPartGridEmpty(index);
+//        if (is) {
+//            if (!plant.plantHerb(index)) {
+//                PrintGameMain();
+//            }
+//        }
+//        else {
+//            System.out.println("Данная ячейка занята введите номер пустой ячейки ");
+//            aging(name);
+//        }
     }
 
 
