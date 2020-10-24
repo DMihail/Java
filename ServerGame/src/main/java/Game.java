@@ -56,11 +56,13 @@ public class Game {
                 aging();
                 break;
             case 2:
+                harvest();
                 break;
             case 3:
                 grid.printGrid();
                 break;
             case 4:
+                gamer.printMoney();
                 break;
             case 5:
                 printRule();
@@ -76,16 +78,25 @@ public class Game {
 
     }
 
+    private void harvest() {
+        System.out.println("Введите номер клетки в которой хотите собрать урожай");
+        int index = scan.nextInt();
+        Plant plant = gridMap.get(index);
+        plant.harvest(gamer);
+        grid.setPlantOfTheGrid(index, " ");
+    }
+
     private void aging() {
         Plant plant = new Plant();
         JsonNode parametrs = plants.get(plantName);
         System.out.println(parametrs);
-        plant.getPlantParameters(plantName, parametrs.get("harvestCost").asInt(), parametrs.get("seedCost").asInt(), parametrs.get("speedMaturation").asInt());
+        plant.getPlantParameters(plantName, parametrs.get("harvestCost").asInt(), parametrs.get("seedCost").asInt(), parametrs.get("speedMaturation").asInt(), gamer);
         System.out.println("Введите номер ячейки для  посадки растения ");
         int index = scan.nextInt();
         boolean is = grid.isPartGridEmpty(index);
         if (is) {
-            if (!plant.plantHerb(index)) {
+            if (!plant.plantHerb(index, grid)) {
+                gridMap.put(index, plant);
                 PrintGameMain();
             }
         }
@@ -111,7 +122,7 @@ public class Game {
     }
 
     private void Exit() {
-        grid.printGrid();
+        System.exit(0);
     }
 
 }

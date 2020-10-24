@@ -1,11 +1,12 @@
 public class Aging extends Thread {
     private int time;
     private int index;
-    private  Grid grid = new Grid();
+    private  Grid grid;
 
-    public void setTimeAndIndex(int time, int index) {
+    public void setTimeAndIndex(int time, int index, Grid grid) {
         this.time = time;
         this.index = index;
+        this.grid = grid;
     }
 
     private void setPlantOfTheGrid(String status) {
