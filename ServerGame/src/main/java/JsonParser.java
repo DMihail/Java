@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 
 public class JsonParser {
-    private String path = "src/main/jsons/plants.json";
+    private String path = "src/main/resources/jsons/plants.json";
 
     private String readJson() {
         String fileData = "";

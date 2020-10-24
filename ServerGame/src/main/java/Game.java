@@ -96,9 +96,9 @@ public class Game {
         boolean is = grid.isPartGridEmpty(index);
         if (is) {
             if (!plant.plantHerb(index, grid)) {
-                gridMap.put(index, plant);
                 PrintGameMain();
             }
+            gridMap.put(index, plant);
         }
         else {
             System.out.println("Данная ячейка занята введите номер пустой ячейки ");
