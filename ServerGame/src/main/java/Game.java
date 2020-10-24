@@ -10,6 +10,7 @@ public class Game {
     private Scanner scan = new Scanner(System.in);
     private  Map<Integer,Plant> gridMap = new HashMap<Integer,Plant>();
     private  Grid grid = new Grid();
+    private String plantName;
 
     public Game() {
         JsonParser json = new JsonParser();
@@ -38,7 +39,7 @@ public class Game {
     }
 
     public void PrintPlantList() {
-        System.out.println("Выбирите растение! ");
+        System.out.println("Выбирите растение!");
         int i = 0;
         for (String name: plants.keySet()){
             i++;
@@ -52,6 +53,7 @@ public class Game {
             case 1:
                 PrintPlantList();
                 choseItemMainPlant();
+                aging();
                 break;
             case 2:
                 break;
@@ -74,33 +76,30 @@ public class Game {
 
     }
 
-    private void aging(String name) {
-//        Plant plant = plants.get(name);
-//        System.out.println("Введите номер ячейки для  посадки растения ");
-//        int index = scan.nextInt();
-//        boolean is = grid.isPartGridEmpty(index);
-//        if (is) {
-//            if (!plant.plantHerb(index)) {
-//                PrintGameMain();
-//            }
-//        }
-//        else {
-//            System.out.println("Данная ячейка занята введите номер пустой ячейки ");
-//            aging(name);
-//        }
+    private void aging() {
+        Plant plant = new Plant();
+        JsonNode parametrs = plants.get(plantName);
+        System.out.println(parametrs);
+        plant.getPlantParameters(plantName, parametrs.get("harvestCost").asInt(), parametrs.get("seedCost").asInt(), parametrs.get("speedMaturation").asInt());
+        System.out.println("Введите номер ячейки для  посадки растения ");
+        int index = scan.nextInt();
+        boolean is = grid.isPartGridEmpty(index);
+        if (is) {
+            if (!plant.plantHerb(index)) {
+                PrintGameMain();
+            }
+        }
+        else {
+            System.out.println("Данная ячейка занята введите номер пустой ячейки ");
+            aging();
+        }
     }
 
 
     private void choseItemMainPlant() {
-        switch (scan.nextInt()) {
-            case 1:
-                aging("Томат");
-                break;
-            default:
-                PrintGameMain();
-                choseItemMainGame();
-                break;
-        }
+        int index = scan.nextInt();
+        String[] strings = plants.keySet().toArray(new String[plants.size()]);
+        plantName = strings[index - 1];
     }
 
 

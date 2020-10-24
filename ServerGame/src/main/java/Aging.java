@@ -15,9 +15,8 @@ public class Aging extends Thread {
     public  void  run() {
         try {
             setPlantOfTheGrid("З");
-//            grid.printGrid();
             Thread.sleep(time);
-//            System.out.println("Растение в ячейке " + index + " созрело, соберите урожай");
+            System.out.println("Растение в ячейке " + index + " созрело, соберите урожай");
             setPlantOfTheGrid("У");
         } catch (InterruptedException e) {
             e.printStackTrace();
