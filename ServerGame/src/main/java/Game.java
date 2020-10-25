@@ -23,7 +23,8 @@ public class Game {
                 "1. Чтоб посадить растение выбирете пункт меню '1', " +
                 "введите номер клетки в которое хотите посадить растеник и выбирете какое \n" +
                 "2. Чтоб собрать растение выбирете пункт меню, '2'" +
-                "введите номер клетки \n"
+                "введите номер клетки, деньги за урожай сразу будут зачислены на ваш баланс \n" +
+                 "3. Буква в ячейке таблицы значит статус посаженого растения, З - зреет, У - можно собирать урожай\n"
         );
     }
 
@@ -103,13 +104,14 @@ public class Game {
                 Game();
                 break;
         }
-//        Game();
     }
 
     private void harvest(int index) {
-        Plant plant = gridMap.get(index);
-        plant.harvest(gamer);
-        grid.setPlantOfTheGrid(index, " ");
+        if (grid.isPlantRipe(index)) {
+            Plant plant = gridMap.get(index);
+            plant.harvest(gamer);
+            grid.setPlantOfTheGrid(index, " ");
+        }
     }
 
     private void aging(int index) {
