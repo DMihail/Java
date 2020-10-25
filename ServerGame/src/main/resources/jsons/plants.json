@@ -3,13 +3,13 @@
   "name": "Томат",
   "harvestCost": 100,
   "seedCost": 25,
-  "speedMaturation": 1500
+  "speedMaturation": 4000
 },
   "watermelon": {
     "name": "Арбуз",
     "harvestCost": 250,
     "seedCost": 50,
-    "speedMaturation": 1000
+    "speedMaturation": 3000
   },
   "rose": {
     "name": "Роза",
@@ -21,12 +21,12 @@
     "name": "Банан",
     "harvestCost": 170,
     "seedCost": 23,
-    "speedMaturation": 1000
+    "speedMaturation": 5000
   },
   "coco": {
     "name": "Кокос",
     "harvestCost": 750,
     "seedCost": 75,
-    "speedMaturation": 500
+    "speedMaturation": 1000
   }
 }

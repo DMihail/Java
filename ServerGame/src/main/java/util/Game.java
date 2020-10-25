@@ -59,7 +59,7 @@ public class Game {
             System.out.println("Введите номер ячейки для  посадки растения ");
         }
              while (!scan.hasNextInt()) {
-                System.out.println("Введите целое число");
+                System.out.println("Введите номер пункта");
                 scan.nextLine();
                 }
                 int index = scan.nextInt();
@@ -78,8 +78,10 @@ public class Game {
         switch (index) {
             case 1:
                 PrintPlantList();
-                choseItemMainPlant(2);
-                setScanIndex(4);
+                setScanIndex(2);
+                if (checkSum()) {
+                    setScanIndex(4);
+                }
                 break;
             case 2:
                 setScanIndex(3);
@@ -106,23 +108,22 @@ public class Game {
     private void harvest(int index) {
         if (grid.isPlantRipe(index)) {
             Plant plant = gridMap.get(index);
-            plant.harvest(gamer);
-            grid.setPlantOfTheGrid(index, " ");
+            plant.harvest(gamer, grid, index);
+
         }
     }
 
     private void aging(int index) {
         Plant plant = new Plant();
         JsonNode parametrs = plants.get(plantName);
-        System.out.println(parametrs);
-        plant.getPlantParameters(plantName, parametrs.get("harvestCost").asInt(), parametrs.get("seedCost").asInt(), parametrs.get("speedMaturation").asInt(), gamer);
+        plant.getPlantParameters(plantName, parametrs.get("harvestCost").asInt(),
+                parametrs.get("seedCost").asInt(),
+                parametrs.get("speedMaturation").asInt(), gamer);
 
         boolean is = grid.isPartGridEmpty(index);
         if (is) {
-            if (!plant.plantHerb(index, grid)) {
-                PrintGameMain();
-            }
-            gridMap.put(index, plant);
+                plant.plantHerb(index, grid);
+                gridMap.put(index, plant);
         }
         else {
             System.out.println("Данная ячейка занята введите номер пустой ячейки ");
@@ -142,6 +143,17 @@ public class Game {
             PrintGameMain();
             setScanIndex(1);
         }
+    }
+
+    boolean checkSum() {
+        JsonNode parametrs = plants.get(plantName);
+        int cost = parametrs.get("seedCost").asInt();
+        boolean answer = gamer.buySeeds(cost);
+        if(!answer) {
+            System.out.println("Недостаточно Денег на покупку " + plantName);
+            return false;
+        }
+        return true;
     }
 
     private void Exit() {

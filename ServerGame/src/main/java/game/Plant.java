@@ -1,5 +1,4 @@
 package game;
-
 import  util.*;
 
 public class Plant  {
@@ -19,20 +18,15 @@ public class Plant  {
         this.gamer = gamer;
     }
 
-    public void harvest(Gamer gamer) {
+    public void harvest(Gamer gamer, Grid grid, int index) {
         gamer.addMoney(harvestCost);
+        gamer.printMoney();
+        grid.setPlantOfTheGrid(index, " ");
     }
 
-    public boolean plantHerb(int gridIndex, Grid grid) {
-        boolean answer = gamer.buySeeds(seedCost);
-        if(!answer) {
-            System.out.println("Недостаточно Денег на покупку " + name);
-            return false;
-        } else {
-                aging.setTimeAndIndex(speedMaturation, gridIndex, grid);
-                aging.start();
-        }
-        return true;
+    public void plantHerb(int gridIndex, Grid grid) {
+      aging.setTimeAndIndex(speedMaturation, gridIndex, grid);
+       aging.start();
     }
 
 }
