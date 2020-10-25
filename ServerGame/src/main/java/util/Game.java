@@ -1,4 +1,6 @@
-
+package util;
+import game.*;
+import jackson.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,8 +10,8 @@ public class Game {
     private Gamer gamer = new Gamer();
     private Map<String, JsonNode> plants = new HashMap<>();
     private Scanner scan = new Scanner(System.in);
-    private  Map<Integer,Plant> gridMap = new HashMap<Integer,Plant>();
-    private  Grid grid = new Grid();
+    private  Map<Integer, Plant> gridMap = new HashMap<Integer, Plant>();
+    private Grid grid = new Grid();
     private String plantName;
 
     public Game() {

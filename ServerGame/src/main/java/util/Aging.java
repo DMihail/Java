@@ -1,7 +1,10 @@
+package util;
+import game.*;
+
 public class Aging extends Thread {
     private int time;
     private int index;
-    private  Grid grid;
+    private Grid grid;
 
     public void setTimeAndIndex(int time, int index, Grid grid) {
         this.time = time;

@@ -1,3 +1,7 @@
+package game;
+
+import  util.*;
+
 public class Plant  {
 
     private String name;

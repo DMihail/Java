@@ -1,8 +1,10 @@
+package game;
+
 public class Gamer {
 
     private int money = 1000;
 
-    protected boolean buySeeds(float sum) {
+    public boolean buySeeds(float sum) {
         if (money >= sum) {
             money -= sum;
             return true;
@@ -10,11 +12,11 @@ public class Gamer {
         return false;
     }
 
-    protected void printMoney() {
+    public void printMoney() {
         System.out.println("Текущий баланс = " + money);
     }
 
-    protected void addMoney(float sum) {
+    public void addMoney(float sum) {
         money += sum;
     }
 }
