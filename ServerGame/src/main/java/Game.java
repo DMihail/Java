@@ -49,7 +49,6 @@ public class Game {
     }
 
     public void setScanIndex(int main) {
-        boolean input = true;
         if (main < 3) {
             System.out.println("Введите номер пункта из списка");
         } else if (main == 3){
@@ -57,8 +56,10 @@ public class Game {
         } else if(main == 4) {
             System.out.println("Введите номер ячейки для  посадки растения ");
         }
-//        while (input) {
-//            try {
+             while (!scan.hasNextInt()) {
+                System.out.println("Введите целое число");
+                scan.nextLine();
+                }
                 int index = scan.nextInt();
                 if (main == 1) {
                     choseItemMainGame(index);
@@ -69,12 +70,6 @@ public class Game {
                 } else if (main ==4) {
                     aging(index);
                 }
-//            } catch (java.util.InputMismatchException e) {
-//                System.out.println(e);
-//                input = false;
-//                setScanIndex(main);
-//            }
-//        }
     }
 
     private void choseItemMainGame(int index) {
