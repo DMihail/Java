@@ -59,19 +59,23 @@ public class Game {
             System.out.println("Введите номер ячейки для  посадки растения ");
         }
              while (!scan.hasNextInt()) {
-                System.out.println("Введите номер пункта");
-                scan.nextLine();
+
+                scan.nextLine();                System.out.println("Введите номер пункта");
                 }
                 int index = scan.nextInt();
-                if (main == 1) {
-                    choseItemMainGame(index);
-                } else if (main == 2){
-                    choseItemMainPlant(index);
-                } else if (main == 3) {
-                    harvest(index);
-                } else if (main ==4) {
-                    aging(index);
-                }
+             if (index <= 8) {
+                 if (main == 1) {
+                     choseItemMainGame(index);
+                 } else if (main == 2) {
+                     choseItemMainPlant(index);
+                 } else if (main == 3) {
+                     harvest(index);
+                 } else if (main == 4) {
+                     aging(index);
+                 }
+             } else {
+                 setScanIndex(main);
+             }
     }
 
     private void choseItemMainGame(int index) {
