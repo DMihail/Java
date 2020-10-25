@@ -47,16 +47,44 @@ public class Game {
         }
     }
 
-    private void choseItemMainGame() {
-        System.out.println("Введите номер пункта из списка");
-        switch (scan.nextInt()) {
+    public void setScanIndex(int main) {
+        boolean input = true;
+        if (main < 3) {
+            System.out.println("Введите номер пункта из списка");
+        } else if (main == 3){
+            System.out.println("Введите номер клетки в которой хотите собрать урожай");
+        } else if(main == 4) {
+            System.out.println("Введите номер ячейки для  посадки растения ");
+        }
+//        while (input) {
+//            try {
+                int index = scan.nextInt();
+                if (main == 1) {
+                    choseItemMainGame(index);
+                } else if (main == 2){
+                    choseItemMainPlant(index);
+                } else if (main == 3) {
+                    harvest(index);
+                } else if (main ==4) {
+                    aging(index);
+                }
+//            } catch (java.util.InputMismatchException e) {
+//                System.out.println(e);
+//                input = false;
+//                setScanIndex(main);
+//            }
+//        }
+    }
+
+    private void choseItemMainGame(int index) {
+        switch (index) {
             case 1:
                 PrintPlantList();
-                choseItemMainPlant();
-                aging();
+                choseItemMainPlant(2);
+                setScanIndex(4);
                 break;
             case 2:
-                harvest();
+                setScanIndex(3);
                 break;
             case 3:
                 grid.printGrid();
@@ -72,27 +100,24 @@ public class Game {
                 break;
             default:
                 System.out.println("Неверное значение");
-                PrintGameMain();
+                Game();
                 break;
         }
-
+//        Game();
     }
 
-    private void harvest() {
-        System.out.println("Введите номер клетки в которой хотите собрать урожай");
-        int index = scan.nextInt();
+    private void harvest(int index) {
         Plant plant = gridMap.get(index);
         plant.harvest(gamer);
         grid.setPlantOfTheGrid(index, " ");
     }
 
-    private void aging() {
+    private void aging(int index) {
         Plant plant = new Plant();
         JsonNode parametrs = plants.get(plantName);
         System.out.println(parametrs);
         plant.getPlantParameters(plantName, parametrs.get("harvestCost").asInt(), parametrs.get("seedCost").asInt(), parametrs.get("speedMaturation").asInt(), gamer);
-        System.out.println("Введите номер ячейки для  посадки растения ");
-        int index = scan.nextInt();
+
         boolean is = grid.isPartGridEmpty(index);
         if (is) {
             if (!plant.plantHerb(index, grid)) {
@@ -102,13 +127,12 @@ public class Game {
         }
         else {
             System.out.println("Данная ячейка занята введите номер пустой ячейки ");
-            aging();
+            setScanIndex(4);
         }
     }
 
 
-    private void choseItemMainPlant() {
-        int index = scan.nextInt();
+    private void choseItemMainPlant(int index) {
         String[] strings = plants.keySet().toArray(new String[plants.size()]);
         plantName = strings[index - 1];
     }
@@ -117,7 +141,7 @@ public class Game {
     public void Game() {
         for (;;) {
             PrintGameMain();
-            choseItemMainGame();
+            setScanIndex(1);
         }
     }
 
