@@ -1,7 +1,7 @@
 package game;
 import  util.*;
 
-public class Plant  {
+public class Plant extends PlantParams {
 
     private String name;
     private Gamer gamer;

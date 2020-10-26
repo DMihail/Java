@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Game {
     private Gamer gamer = new Gamer();
-    private Map<String, JsonNode> plants = new HashMap<>();
+    private Map<String, PlantParams> plants = new HashMap<>();
     private Scanner scan = new Scanner(System.in);
     private  Map<Integer, Plant> gridMap = new HashMap<Integer, Plant>();
     private Grid grid = new Grid();
@@ -119,10 +119,10 @@ public class Game {
 
     private void aging(int index) {
         Plant plant = new Plant();
-        JsonNode parametrs = plants.get(plantName);
-        plant.getPlantParameters(plantName, parametrs.get("harvestCost").asInt(),
-                parametrs.get("seedCost").asInt(),
-                parametrs.get("speedMaturation").asInt(), gamer);
+        PlantParams parametrs = plants.get(plantName);
+        plant.getPlantParameters(plantName, parametrs.getHarvestCost(),
+                parametrs.getSeedCost(),
+                parametrs.getSpeedMaturation(), gamer);
 
         boolean is = grid.isPartGridEmpty(index);
         if (is) {
@@ -150,8 +150,8 @@ public class Game {
     }
 
     boolean checkSum() {
-        JsonNode parametrs = plants.get(plantName);
-        int cost = parametrs.get("seedCost").asInt();
+        PlantParams parametrs = plants.get(plantName);
+        int cost = parametrs.getSeedCost();
         boolean answer = gamer.buySeeds(cost);
         if(!answer) {
             System.out.println("Недостаточно Денег на покупку " + plantName);

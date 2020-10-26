@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
+import game.*;
 
 public class JsonParser {
     private String path = "src/main/resources/jsons/plants.json";
@@ -24,14 +25,17 @@ public class JsonParser {
         return fileData;
     }
 
-    public Map<String, JsonNode> getMapPlantsObj () {
-        Map<String,JsonNode> plants = new  HashMap<String,JsonNode>();
+    public Map<String, PlantParams> getMapPlantsObj () {
+        Map<String,PlantParams> plants = new  HashMap<String,PlantParams>();
         try {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(readJson());
         for (JsonNode obj: jsonNode) {
-            String name = obj.get("name").asText();
-            plants.put(name, obj);
+            PlantParams plant = new PlantParams();
+            plant.getPlantParameters(obj.get("name").asText(),
+                    obj.get("harvestCost").asInt(), obj.get("seedCost").asInt(),
+                    obj.get("speedMaturation").asInt());
+            plants.put(obj.get("name").asText(), plant);
         }
         } catch (IOException e) {
             e.printStackTrace();
