@@ -1,12 +1,12 @@
 package game;
 
-public class PlantParams{
-    private String name;
-    private int harvestCost;
-    private int seedCost;
-    private int speedMaturation;
+public class Seed {
+    protected String name;
+    protected int harvestCost;
+    protected int seedCost;
+    protected int speedMaturation;
 
-    public void getPlantParameters(String name, int harvestCost, int seedCost, int speedMaturation) {
+    public void getSeedParameters(String name, int harvestCost, int seedCost, int speedMaturation) {
         this.name = name;
         this.harvestCost = harvestCost;
         this.seedCost = seedCost;

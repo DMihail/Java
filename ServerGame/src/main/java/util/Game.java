@@ -1,14 +1,13 @@
 package util;
 import game.*;
 import jackson.JsonParser;
-import com.fasterxml.jackson.databind.JsonNode;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
     private Gamer gamer = new Gamer();
-    private Map<String, PlantParams> plants = new HashMap<>();
+    private Map<String, Seed> plants = new HashMap<>();
     private Scanner scan = new Scanner(System.in);
     private  Map<Integer, Plant> gridMap = new HashMap<Integer, Plant>();
     private Grid grid = new Grid();
@@ -59,8 +58,8 @@ public class Game {
             System.out.println("Введите номер ячейки для  посадки растения ");
         }
              while (!scan.hasNextInt()) {
-
-                scan.nextLine();                System.out.println("Введите номер пункта");
+                 System.out.println("Введите номер пункта");
+                scan.nextLine();
                 }
                 int index = scan.nextInt();
              if (index <= 8) {
@@ -76,6 +75,9 @@ public class Game {
              } else {
                  setScanIndex(main);
              }
+    }
+    private interface choseItemMainGame{
+            void choseItemMainGame(int index);
     }
 
     private void choseItemMainGame(int index) {
@@ -112,21 +114,22 @@ public class Game {
     private void harvest(int index) {
         if (grid.isPlantRipe(index)) {
             Plant plant = gridMap.get(index);
-            plant.harvest(gamer, grid, index);
+            gamer.harvest(grid, index, plant.getHarvestCost());
 
         }
     }
 
     private void aging(int index) {
         Plant plant = new Plant();
-        PlantParams parametrs = plants.get(plantName);
-        plant.getPlantParameters(plantName, parametrs.getHarvestCost(),
+        Seed parametrs = plants.get(plantName);
+        plant.getPlantParameters(plantName,
+                parametrs.getHarvestCost(),
                 parametrs.getSeedCost(),
-                parametrs.getSpeedMaturation(), gamer);
+                parametrs.getSpeedMaturation());
 
         boolean is = grid.isPartGridEmpty(index);
         if (is) {
-                plant.plantHerb(index, grid);
+                gamer.plantHerb(parametrs.getSpeedMaturation(), index, grid);
                 gridMap.put(index, plant);
         }
         else {
@@ -150,7 +153,7 @@ public class Game {
     }
 
     boolean checkSum() {
-        PlantParams parametrs = plants.get(plantName);
+        Seed parametrs = plants.get(plantName);
         int cost = parametrs.getSeedCost();
         boolean answer = gamer.buySeeds(cost);
         if(!answer) {
@@ -163,5 +166,11 @@ public class Game {
     private void Exit() {
         System.exit(0);
     }
+}
 
+enum Functions {
+    MAIN_GAME,
+    MAIN_PLANT,
+    HARVEST,
+    AGING
 }

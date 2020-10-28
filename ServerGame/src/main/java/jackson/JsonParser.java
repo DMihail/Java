@@ -25,14 +25,14 @@ public class JsonParser {
         return fileData;
     }
 
-    public Map<String, PlantParams> getMapPlantsObj () {
-        Map<String,PlantParams> plants = new  HashMap<String,PlantParams>();
+    public Map<String, Seed> getMapPlantsObj () {
+        Map<String,Seed> plants = new  HashMap<String,Seed>();
         try {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(readJson());
         for (JsonNode obj: jsonNode) {
-            PlantParams plant = new PlantParams();
-            plant.getPlantParameters(obj.get("name").asText(),
+            Seed plant = new Seed();
+            plant.getSeedParameters(obj.get("name").asText(),
                     obj.get("harvestCost").asInt(), obj.get("seedCost").asInt(),
                     obj.get("speedMaturation").asInt());
             plants.put(obj.get("name").asText(), plant);
