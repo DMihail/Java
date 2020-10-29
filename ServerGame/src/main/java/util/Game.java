@@ -49,32 +49,41 @@ public class Game {
         }
     }
 
-    public void setScanIndex(int main) {
-        if (main < 3) {
-            System.out.println("Введите номер пункта из списка");
-        } else if (main == 3){
-            System.out.println("Введите номер клетки в которой хотите собрать урожай");
-        } else if(main == 4) {
-            System.out.println("Введите номер ячейки для  посадки растения ");
-        }
+    public void setScanIndex(Functions func) {
              while (!scan.hasNextInt()) {
                  System.out.println("Введите номер пункта");
                 scan.nextLine();
                 }
                 int index = scan.nextInt();
-             if (index <= 8) {
-                 if (main == 1) {
+             switch (func) {
+                 case MAIN_GAME:
                      choseItemMainGame(index);
-                 } else if (main == 2) {
+                     break;
+                 case MAIN_PLANT:
                      choseItemMainPlant(index);
-                 } else if (main == 3) {
+                     break;
+                 case HARVEST:
                      harvest(index);
-                 } else if (main == 4) {
+                     break;
+                 case AGING:
                      aging(index);
-                 }
-             } else {
-                 setScanIndex(main);
+                     break;
+                 default:
+                     setScanIndex(func);
              }
+//             if (index <= 8) {
+//                 if (main == 1) {
+//                     choseItemMainGame(index);
+//                 } else if (main == 2) {
+//                     choseItemMainPlant(index);
+//                 } else if (main == 3) {
+//                     harvest(index);
+//                 } else if (main == 4) {
+//                     aging(index);
+//                 }
+//             } else {
+//                 setScanIndex(main);
+//             }
     }
     private interface choseItemMainGame{
             void choseItemMainGame(int index);
@@ -84,13 +93,16 @@ public class Game {
         switch (index) {
             case 1:
                 PrintPlantList();
-                setScanIndex(2);
+                System.out.println("Введите номер пункта из списка");
+                setScanIndex(Functions.MAIN_PLANT);
                 if (checkSum()) {
-                    setScanIndex(4);
+                    System.out.println("Введите номер ячейки для  посадки растения ");
+                    setScanIndex(Functions.AGING);
                 }
                 break;
             case 2:
-                setScanIndex(3);
+                System.out.println("Введите номер клетки в которой хотите собрать урожай");
+                setScanIndex(Functions.HARVEST);
                 break;
             case 3:
                 grid.printGrid();
@@ -134,7 +146,7 @@ public class Game {
         }
         else {
             System.out.println("Данная ячейка занята введите номер пустой ячейки ");
-            setScanIndex(4);
+            setScanIndex(Functions.AGING);
         }
     }
 
@@ -148,7 +160,8 @@ public class Game {
     public void Game() {
         for (;;) {
             PrintGameMain();
-            setScanIndex(1);
+            System.out.println("Введите номер пункта из списка");
+            setScanIndex(Functions.MAIN_GAME);
         }
     }
 
